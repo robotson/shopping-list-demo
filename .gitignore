@@ -1,0 +1,6 @@
+# mac shtuff
+.DS_Store
+
+# node
+node_modules/
+
