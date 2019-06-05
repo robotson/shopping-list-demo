@@ -25,15 +25,23 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
-        /// MYYY CODE
+        /// MY CODE
+
+        //define click handler:
+        function signInWithTwitterButtonHandler(event){
+            alert('do some stuff!');
+        }
 
         //create a button:
         let root = document.getElementById('root');
 
         let signInButton = document.createElement('button');
+
         signInButton.appendChild(document.createTextNode(
             "Sign-In With Twitter"
         ))
+
+        signInButton.addEventListener('click', signInWithTwitterButtonHandler);
 
         root.appendChild(signInButton);
 
