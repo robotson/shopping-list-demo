@@ -3,6 +3,7 @@
     <head></head>
     <body>
         <h1>hello world</h1>
+        <div id='root'></div>
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
@@ -14,7 +15,7 @@
         // Your web app's Firebase configuration
         var firebaseConfig = {
             apiKey: "AIzaSyBEcmX7MPOlaDMrpAdNb426q6yTbhdkvts",
-            authDomain: "robotson-shopping-list.firebaseapp.com",
+            authDomain: "authenticate.shopping-list.demo.codes",
             databaseURL: "https://robotson-shopping-list.firebaseio.com",
             projectId: "robotson-shopping-list",
             storageBucket: "robotson-shopping-list.appspot.com",
@@ -23,6 +24,17 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+
+        /// MYYY CODE
+
+        //create a button:
+        let root = document.getElementById('root');
+
+        let signInButton = document.createElement('button');
+
+        root.appendChild(signInButton);
+
+
         </script>
     </body>
 </html>
