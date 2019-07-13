@@ -20,7 +20,7 @@
     </script>
 </head>
 <body>
-<h1>demo</h1>
+<h1>demo v. 0.0.1</h1>
 <div id='root'></div>
 
 <script>
@@ -43,11 +43,11 @@
         firebase.auth().signInWithRedirect(provider);
     }
 
-    console.log("check for redirect beginning..");
+    console.log("check for redirect beginning...");
     firebase.auth().getRedirectResult().then(function(result) {
         console.log("redirect check returning...");
         if (result.credential) {
-            console.log("credential detected:", result.credential);
+            console.log("credential detected:", result.credential, "creating welcome message..");
             let welcomeBackMessage = document.createElement('p');
             welcomeBackMessage.id = "welcome-message";
             welcomeBackMessage.appendChild(document.createTextNode("Welcome back!"));
@@ -70,7 +70,11 @@
             document.getElementById('root').appendChild(signInButton);
         }
         else{
-            console.log('user credentials:', user);
+            console.log('result package:', result);
+            console.log('adding user welcome acknowledgement:');
+
+
+
         }
     }).catch(function(error) {
         // Handle Errors here.
