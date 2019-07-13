@@ -13,6 +13,10 @@
             appId: "1:760807369962:web:5ab3d866f6b3478b"
         };
         console.log(firebaseConfig);
+
+        function welcomeUser(){
+
+        }
     </script>
 </head>
 <body>
@@ -44,6 +48,10 @@
         console.log("redirect check returning...");
         if (result.credential) {
             console.log("credential detected:", result.credential);
+            let welcomeBackMessage = document.createElement('p');
+            welcomeBackMessage.id = "welcome-message";
+            welcomeBackMessage.appendChild(document.createTextNode("Welcome back!"));
+            document.getElementById('root').appendChild(welcomeBackMessage);
             // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
             // You can use these server side with your app's credentials to access the Twitter API.
             var token = result.credential.accessToken;
