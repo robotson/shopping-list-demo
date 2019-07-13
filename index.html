@@ -1,22 +1,32 @@
 <html>
-<head></head>
+<head>
+    <script>
+        console.log('welcome!');
+        console.log('creating default config:');
+        let firebaseConfig = {
+            apiKey: "AIzaSyBEcmX7MPOlaDMrpAdNb426q6yTbhdkvts",
+            authDomain: "robotson-shopping-list.firebaseapp.com",
+            databaseURL: "https://robotson-shopping-list.firebaseio.com",
+            projectId: "robotson-shopping-list",
+            storageBucket: "robotson-shopping-list.appspot.com",
+            messagingSenderId: "760807369962",
+            appId: "1:760807369962:web:5ab3d866f6b3478b"
+        };
+        console.log(firebaseConfig);
+    </script>
+</head>
 <body>
-<h1>hello world</h1>
+<h1>demo</h1>
 <div id='root'></div>
 
+<script>
+    console.log('loading firebase scripts...');
+</script>
 <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
 
 <script defer>
-    let firebaseConfig = {
-        apiKey: "AIzaSyBEcmX7MPOlaDMrpAdNb426q6yTbhdkvts",
-        authDomain: "robotson-shopping-list.firebaseapp.com",
-        databaseURL: "https://robotson-shopping-list.firebaseio.com",
-        projectId: "robotson-shopping-list",
-        storageBucket: "robotson-shopping-list.appspot.com",
-        messagingSenderId: "760807369962",
-        appId: "1:760807369962:web:5ab3d866f6b3478b"
-    };
+
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
