@@ -20,7 +20,7 @@
     </script>
 </head>
 <body>
-<h1>demo v. 0.0.2</h1>
+<h1>demo v. 0.0.3</h1>
 <div id='root'></div>
 
 <script>
@@ -78,7 +78,7 @@
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
-            console.log("Logged in!");
+            console.log("Logged in!", user);
             let welcomeBackMessage = document.createElement('p');
             welcomeBackMessage.id = "welcome-message";
             welcomeBackMessage.appendChild(document.createTextNode("Welcome back!"));
