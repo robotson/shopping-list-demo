@@ -26,11 +26,12 @@
 <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
 
 <script defer>
-    console.log("defered script block running...", "initializing firebase");
+    console.log("defered script block running...", "initializing firebase"); 
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
+    console.log('firebase twitter provider auth module loading...');
     let provider = new firebase.auth.TwitterAuthProvider();
 
     function signInWithTwitterButtonHandler(event){
@@ -38,17 +39,31 @@
         firebase.auth().signInWithRedirect(provider);
     }
 
+    console.log("check for redirect beginning..");
     firebase.auth().getRedirectResult().then(function(result) {
+        console.log("redirect check returning...");
         if (result.credential) {
+            console.log("credential detected:", result.credential);
             // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
             // You can use these server side with your app's credentials to access the Twitter API.
             var token = result.credential.accessToken;
             var secret = result.credential.secret;
             // ...
         }
+        
         // The signed-in user info.
         var user = result.user;
-        console.log(user);
+        if(!user){
+            console.log('no signed in user found');
+            console.log('creating signin button');
+            let signInButton = document.createElement('button');
+            signInButton.appendChild(document.createTextNode("Sign-In With Twitter"));
+            signInButton.addEventListener('click', signInWithTwitterButtonHandler);
+            document.getElementById('root').appendChild(signInButton);
+        }
+        else{
+            console.log('user credentials:', user);
+        }
     }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -60,10 +75,7 @@
         console.log(errorCode, errorMessage, email, credential);
     });
 
-    let signInButton = document.createElement('button');
-    signInButton.appendChild(document.createTextNode("Sign-In With Twitter"));
-    signInButton.addEventListener('click', signInWithTwitterButtonHandler);
-    document.getElementById('root').appendChild(signInButton);
+    
 </script>
 </body>
 </html>
