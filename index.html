@@ -20,7 +20,7 @@
     </script>
 </head>
 <body>
-<h1>demo v. 0.0.1</h1>
+<h1>demo v. 0.0.2</h1>
 <div id='root'></div>
 
 <script>
@@ -45,13 +45,9 @@
 
     console.log("check for redirect beginning...");
     firebase.auth().getRedirectResult().then(function(result) {
-        console.log("redirect check returning...");
+        console.log("redirect check returning result:", result);
         if (result.credential) {
-            console.log("credential detected:", result.credential, "creating welcome message..");
-            let welcomeBackMessage = document.createElement('p');
-            welcomeBackMessage.id = "welcome-message";
-            welcomeBackMessage.appendChild(document.createTextNode("Welcome back!"));
-            document.getElementById('root').appendChild(welcomeBackMessage);
+            console.log("credential detected:", result.credential);
             // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
             // You can use these server side with your app's credentials to access the Twitter API.
             var token = result.credential.accessToken;
@@ -63,17 +59,9 @@
         var user = result.user;
         if(!user){
             console.log('no signed in user found');
-            console.log('creating signin button');
-            let signInButton = document.createElement('button');
-            signInButton.appendChild(document.createTextNode("Sign-In With Twitter"));
-            signInButton.addEventListener('click', signInWithTwitterButtonHandler);
-            document.getElementById('root').appendChild(signInButton);
         }
         else{
             console.log('result package:', result);
-            console.log('adding user welcome acknowledgement:');
-
-
 
         }
     }).catch(function(error) {
@@ -85,6 +73,24 @@
         // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
         console.log(errorCode, errorMessage, email, credential);
+    });
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+            console.log("Logged in!");
+            let welcomeBackMessage = document.createElement('p');
+            welcomeBackMessage.id = "welcome-message";
+            welcomeBackMessage.appendChild(document.createTextNode("Welcome back!"));
+            document.getElementById('root').appendChild(welcomeBackMessage);
+        } else {
+            // No user is signed in.
+            console.log('creating signin button');
+            let signInButton = document.createElement('button');
+            signInButton.appendChild(document.createTextNode("Sign-In With Twitter"));
+            signInButton.addEventListener('click', signInWithTwitterButtonHandler);
+            document.getElementById('root').appendChild(signInButton);
+        }
     });
 
     
