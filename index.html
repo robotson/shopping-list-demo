@@ -1,99 +1,54 @@
 <html>
-<head>
-    <script>
-        console.log('welcome!');
-        console.log('creating default config:');
-        let firebaseConfig = {
-            apiKey: "AIzaSyBEcmX7MPOlaDMrpAdNb426q6yTbhdkvts",
-            authDomain: "robotson-shopping-list.firebaseapp.com",
-            databaseURL: "https://robotson-shopping-list.firebaseio.com",
-            projectId: "robotson-shopping-list",
-            storageBucket: "robotson-shopping-list.appspot.com",
-            messagingSenderId: "760807369962",
-            appId: "1:760807369962:web:5ab3d866f6b3478b"
-        };
-        console.log(firebaseConfig);
-
-        function welcomeUser(){
-
-        }
-    </script>
-</head>
+<head></head>
 <body>
-<h1>demo v. 0.0.3</h1>
+<h1>demo v. 0.0.4</h1>
 <div id='root'></div>
 
-<script>
-    console.log('loading firebase scripts...');
-</script>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
-
 <script defer>
-    console.log("defered script block running...", "initializing firebase"); 
 
-    // Initialize Firebase
+
+    let firebaseConfig = {
+        apiKey: "AIzaSyBEcmX7MPOlaDMrpAdNb426q6yTbhdkvts",
+        authDomain: "robotson-shopping-list.firebaseapp.com",
+        databaseURL: "https://robotson-shopping-list.firebaseio.com",
+        projectId: "robotson-shopping-list",
+        storageBucket: "robotson-shopping-list.appspot.com",
+        messagingSenderId: "760807369962",
+        appId: "1:760807369962:web:5ab3d866f6b3478b"
+    };
+
     firebase.initializeApp(firebaseConfig);
-
-    console.log('firebase twitter provider auth module loading...');
     let provider = new firebase.auth.TwitterAuthProvider();
 
     function signInWithTwitterButtonHandler(event){
-        console.log('sign in with twitter button click');
         firebase.auth().signInWithRedirect(provider);
     }
-
-    console.log("check for redirect beginning...");
     firebase.auth().getRedirectResult().then(function(result) {
-        console.log("redirect check returning result:", result);
         if (result.credential) {
-            console.log("credential detected:", result.credential);
-            // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-            // You can use these server side with your app's credentials to access the Twitter API.
             var token = result.credential.accessToken;
             var secret = result.credential.secret;
-            // ...
         }
-        
-        // The signed-in user info.
         var user = result.user;
-        if(!user){
-            console.log('no signed in user found');
-        }
-        else{
-            console.log('result package:', result);
-
-        }
-    }).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        console.log(errorCode, errorMessage, email, credential);
-    });
+    }).catch(console.error);
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            // User is signed in.
-            console.log("Logged in!", user);
             let welcomeBackMessage = document.createElement('p');
             welcomeBackMessage.id = "welcome-message";
             welcomeBackMessage.appendChild(document.createTextNode("Welcome back!"));
             document.getElementById('root').appendChild(welcomeBackMessage);
         } else {
-            // No user is signed in.
-            console.log('creating signin button');
             let signInButton = document.createElement('button');
             signInButton.appendChild(document.createTextNode("Sign-In With Twitter"));
             signInButton.addEventListener('click', signInWithTwitterButtonHandler);
             document.getElementById('root').appendChild(signInButton);
         }
     });
-
-    
 </script>
 </body>
 </html>
