@@ -3,15 +3,12 @@
 <body>
 <h1>demo v. 0.0.4</h1>
 <div id='root'></div>
-
 <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
-<script defer>
-
-
+<script type="text/babel" defer>
     let firebaseConfig = {
         apiKey: "AIzaSyBEcmX7MPOlaDMrpAdNb426q6yTbhdkvts",
         authDomain: "robotson-shopping-list.firebaseapp.com",
@@ -49,6 +46,11 @@
             document.getElementById('root').appendChild(signInButton);
         }
     });
+
+    ReactDOM.render(
+        <h1>Hello, world!</h1>,
+        document.getElementById('root')
+    );
 </script>
 </body>
 </html>
