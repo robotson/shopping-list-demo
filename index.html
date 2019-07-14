@@ -8,7 +8,7 @@
 <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
 <script type="text/babel" defer>
-    let version = '0.0.5';
+    let version = '0.0.6';
 
     let firebaseConfig = {
         apiKey: "AIzaSyBEcmX7MPOlaDMrpAdNb426q6yTbhdkvts",
@@ -26,13 +26,13 @@
     function signInWithTwitterButtonHandler(event){
         firebase.auth().signInWithRedirect(provider);
     }
-    firebase.auth().getRedirectResult().then(function(result) {
-        if (result.credential) {
-            var token = result.credential.accessToken;
-            var secret = result.credential.secret;
-        }
-        var user = result.user;
-    }).catch(console.error);
+    // firebase.auth().getRedirectResult().then(function(result) {
+    //     if (result.credential) {
+    //         var token = result.credential.accessToken;
+    //         var secret = result.credential.secret;
+    //     }
+    //     var user = result.user;
+    // });
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -49,7 +49,7 @@
     });
 
     ReactDOM.render(
-        <h1>demo v.{version}</h1>,
+        <h1>demo v{version}</h1>,
         document.getElementById('root')
     );
 </script>
