@@ -13,7 +13,7 @@
     let Router = ReactRouterDOM.HashRouter;
     let Route = ReactRouterDOM.Route;
     let Link = ReactRouterDOM.Link;
-    let version = '0.0.6';
+    let version = '0.0.7';
     
 
     let firebaseConfig = {
@@ -55,46 +55,46 @@
     });
 
     function Index() {
-    return <h2>Home</h2>;
+        return <h2>Home</h2>;
     }
 
     function About() {
-    return <h2>About</h2>;
+        return <h2>About</h2>;
     }
 
     function Users() {
-    return <h2>Users</h2>;
+        return <h2>Users</h2>;
     }
 
     function AppRouter() {
-    return (
-        <Router>
-        <div>
-            <nav>
-            <ul>
-                <li>
-                <Link to="/">Home</Link>
-                </li>
-                <li>
-                <Link to="/about/">About</Link>
-                </li>
-                <li>
-                <Link to="/users/">Users</Link>
-                </li>
-            </ul>
-            </nav>
+        return (
+            <Router>
+            <div>
+                <nav>
+                <ul>
+                    <li>
+                    <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                    <Link to="/about/">About</Link>
+                    </li>
+                    <li>
+                    <Link to="/users/">Users</Link>
+                    </li>
+                </ul>
+                </nav>
 
-            <Route path="/" exact component={Index} />
-            <Route path="/about/" component={About} />
-            <Route path="/users/" component={Users} />
-        </div>
-        </Router>
-    );
+                <Route path="/" exact component={Index} />
+                <Route path="/about/" component={About} />
+                <Route path="/users/" component={Users} />
+            </div>
+            </Router>
+        );
     }
 
     ReactDOM.render(
         <h1>demo v{version}</h1>,
-        AppRouter,
+        <AppRouter />,
         document.getElementById('root')
     );
 </script>
