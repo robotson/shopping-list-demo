@@ -9,13 +9,11 @@
 <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
 <script type="text/babel" defer>
-    React;
     let Router = ReactRouterDOM.HashRouter;
     let Route = ReactRouterDOM.Route;
     let Link = ReactRouterDOM.Link;
     let version = '0.0.8';
     
-
     let firebaseConfig = {
         apiKey: "AIzaSyBEcmX7MPOlaDMrpAdNb426q6yTbhdkvts",
         authDomain: "robotson-shopping-list.firebaseapp.com",
@@ -58,45 +56,42 @@
         return <h2>Home</h2>;
     }
 
-    function About() {
-        return <h2>About</h2>;
+    function Section1() {
+        return <h2>Section 1</h2>;
     }
 
-    function Users() {
-        return <h2>Users</h2>;
+    function Section2() {
+        return <h2>Section 2</h2>;
     }
 
     function AppRouter() {
         return (
             <Router>
             <div>
+                <h1>demo v{version}</h1>
                 <nav>
-                <ul>
-                    <li>
-                    <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                    <Link to="/about/">About</Link>
-                    </li>
-                    <li>
-                    <Link to="/users/">Users</Link>
-                    </li>
-                </ul>
+                    <ul>
+                        <li>
+                        <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                        <Link to="/section-1/">Section 1</Link>
+                        </li>
+                        <li>
+                        <Link to="/section-2/">Section 2</Link>
+                        </li>
+                    </ul>
                 </nav>
-
                 <Route path="/" exact component={Index} />
-                <Route path="/about/" component={About} />
-                <Route path="/users/" component={Users} />
+                <Route path="/section-1/" component={About} />
+                <Route path="/section-2/" component={Users} />
             </div>
             </Router>
         );
     }
 
     ReactDOM.render(
-        <div>
-            <h1>demo v{version}</h1>
-            <AppRouter />
-        </div>,
+        <AppRouter />,
         document.getElementById('root')
     );
 </script>
