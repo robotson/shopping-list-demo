@@ -6,13 +6,15 @@
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-firestore.js"></script>
 <script type="text/babel" defer>
     let Router = ReactRouterDOM.HashRouter;
     let Route = ReactRouterDOM.Route;
     let Link = ReactRouterDOM.Link;
-    let version = '0.0.8';
+    let version = '0.0.9';
+    
     
     let firebaseConfig = {
         apiKey: "AIzaSyBEcmX7MPOlaDMrpAdNb426q6yTbhdkvts",
@@ -25,18 +27,8 @@
     };
 
     firebase.initializeApp(firebaseConfig);
+    let db = firebase.firestore();
     let provider = new firebase.auth.TwitterAuthProvider();
-
-    function signInWithTwitterButtonHandler(event){
-        firebase.auth().signInWithRedirect(provider);
-    }
-    // firebase.auth().getRedirectResult().then(function(result) {
-    //     if (result.credential) {
-    //         var token = result.credential.accessToken;
-    //         var secret = result.credential.secret;
-    //     }
-    //     var user = result.user;
-    // });
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -47,7 +39,9 @@
         } else {
             let signInButton = document.createElement('button');
             signInButton.appendChild(document.createTextNode("Sign-In With Twitter"));
-            signInButton.addEventListener('click', signInWithTwitterButtonHandler);
+            signInButton.addEventListener('click', (e)=>{
+                firebase.auth().signInWithRedirect(provider);
+            });
             document.getElementById('root').appendChild(signInButton);
         }
     });
